@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Page Background */
+    body {
+      background: linear-gradient(to bottom, #6b8d95, #4f6c73);
+      min-height: 100vh;
+      justify-content: center;
+
+      padding: 40px 20px;
+    }
+
+    /* Container */
+    .container {
+      text-align: center;
+      width: 100%;
+      max-width: 1500px;
+    }
+
+    /* Logo Section */
+    .logo-section {
+      margin-bottom: 25px;
+    }
+
+    .logo {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+      height: auto;
+    }
+
+    /* Navbar Base */
+    .navbar {
+      position: relative;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 120px;
+      padding: 10px 0;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #0d1b2a;
+      background-color: #dfe6eb;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-links a:hover {
+      background-color: #1b263b;
+      color: #e0e1dd;
+      transform: translateY(-3px);
+      box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Toggle Button */
+    .menu-toggle {
+      display: none;
+      background: #1b263b;
+      color: #fff;
+      border: none;
+      padding: 10px 14px;
+      font-size: 22px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .menu-toggle:hover {
+      background: #00b4d8;
+    }
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: url("wheel.JPG") no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Dark overlay for text visibility */
+    .overlay {
+      background: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* Text content */
+    .content {
+      color: #fff;
+      text-align: center;
+      max-width: 700px;
+    }
+
+    .content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .content p {
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    /* Button */
+    .btn {
+      background: #00b4d8;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #0077a8;
+    }
+    .footer-wrap {
+      background:linear-gradient(to bottom, #4f6c73, #4f6c73);
+      padding: 40px 30px 60px;
+      position: relative;
+      font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial;
+      max-height:auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      max-width: 1700px;
+      margin: auto;
+      background-color: rgba(3, 68, 3, 0.616);
+    }
+
+    .top-row {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 0.8fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .brand {
+      display: flex;
+      gap: 22px;
+      align-items: flex-start;
+    }
+
+    .brand .logo {
+      width: 110px;
+      height: 110px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 2px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .brand .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit:cover;
+      display: block;
+    }
+
+    .brand .title-wrap {
+      margin-top: 6px;
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 0.8px;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .brand .tag {
+      margin-top: 8px;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      color: var(--muted);
+      font-size: 18px;
+    }
+    .contact {
+      font-size: 16px;
+      line-height: 1.9;
+      color: var(--muted);
+      max-width: 540px;
+      padding-top: 8px;
+    }
+    .contact a {
+      color: var(--muted);
+      text-decoration: underline;
+    }
+    .nav {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding-top: 18px;
+      padding-right:40px;
+    }
+    .nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      column-count: 1;
+      text-align: right;
+    }
+    .nav li {
+      margin: 18px 0;
+      font-size: 16px;
+      color: var(--muted);
+    }
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .copyright {
+      text-align: center;
+      margin:auto;
+      font-size: 14px;
+      padding-top:250px;
+      opacity: 0.95;
+    }
+    .services-section {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #ffffff;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: #111;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Service cards layout */
+.services-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+/* Individual service box */
+.service-box {
+  background: #f4f4f4;
+  border-radius: 15px;
+  padding: 30px 20px;
+  width: 300px;
+  text-align: center;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.service-box:hover {
+  transform: translateY(-8px);
+  background: #111;
+  color: #fff;
+}
+
+/* Service icon styling */
+.service-icon {
+  font-size: 50px;
+  color: #d4af37; /* gold tone for professionalism */
+  margin-bottom: 15px;
+  transition: 0.3s ease;
+}
+
+.service-box:hover .service-icon {
+  color: #ffcc00;
+}
+
+/* Headings */
+.service-box h3 {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+/* Paragraph text */
+.service-box p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+    /* -----------------------------------
+   RESPONSIVE DESIGN
+----------------------------------- */
+
+    /* Tablets */
+    @media (max-width: 768px) {
+      .logo {
+        max-width: 200px;
+      }
+
+      .nav-links a {
+        padding: 8px 18px;
+        font-size: 15px;
+      }
+    }
+
+    /* Phones */
+    @media (max-width: 480px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      .logo {
+        max-width: 250px;
+      }
+
+      /* Show toggle, hide links by default */
+      .menu-toggle {
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 15px;
+        border-radius: 10px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        width: 80%;
+        max-width: 250px;
+        margin: 0 auto;
+        padding: 10px;
+        font-size: 14px;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+      .hero {
+        height: 80vh;
+      }
+
+      .content h1 {
+        font-size: 1.6rem;
+      }
+
+      .content p {
+        font-size: 0.95rem;
+      }
+
+      .btn {
+        padding: 10px 22px;
+        font-size: 0.9rem;
+      }
+      .top-row {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+      .nav {
+        justify-content: flex-start;
+        text-align: left;
+      }
+      .brand {
+        align-items: center;
+        gap: 14px;
+      }
+      .brand .title-wrap h1 {
+        font-size: 22px;
+      }
+      .brand .logo {
+        width: 86px;
+        height: 86px;
+      }
+      .contact {
+        font-size: 15px;
+      }
+      .services-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .service-box {
+    width: 90%;
+  }
+    }
+  </style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Josh Automotive Mechanics</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <!-- Logo Section -->
+        <header class="logo-section">
+          <img
+            src="LOGO.jpg"
+            alt="Josh Automotive Mechanics Logo"
+            class="logo"
+          />
+        </header>
+
+        <!-- Navigation Section -->
+        <nav class="navbar">
+          <button class="menu-toggle" id="menu-toggle">☰</button>
+          <div class="nav-links" id="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="other services.html">Other services</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </nav>
+        <script>
+          // Toggle mobile menu
+          const toggleBtn = document.getElementById("menu-toggle");
+          const navLinks = document.getElementById("nav-links");
+
+          toggleBtn.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+          });
+        </script>
+      </div>
+    </div>
+    <section class="services-section">
+  <h2 class="section-title">Other Services</h2>
+  <div class="services-container">
+
+    <div class="service-box">
+      <i class="fas fa-tools service-icon"></i>
+      <h3>Mobile Mechanics</h3>
+      <p>We diagnose and repair all types of vehicles using advanced tools to get you back on the road quickly and safely.</p>
+    </div>
+
+    <div class="service-box">
+      <i class="fas fa-oil-can service-icon"></i>
+      <h3>Transparent pricing</h3>
+      <p>Keep your car running smoothly with regular maintenance and professional check-ups from our skilled technicians.</p>
+    </div>
+
+    <div class="service-box">
+      <i class="fas fa-ambulance service-icon"></i>
+      <h3>Extended Warranty Acceptance</h3>
+      <p>We offer 24/7 roadside assistance and emergency repair services whenever your vehicle breaks down unexpectedly.</p>
+    </div>
+
+  </div>
+</section>
+
+    <div class="footer">
+    <footer class="footer-wrap" role="contentinfo">
+      <div class="top-row">
+        <div>
+          <div class="brand">
+            <div class="logo">
+              <img src="LOGO.jpg" alt="Josh Automotive Mechanics Logo" />
+            </div>
+            <div class="title-wrap">
+              <h1>Josh Automotive Mechanics</h1>
+              <div class="tag">"Trust Your Drives"</div>
+            </div>
+          </div>
+        </div>
+        <div class="contact">
+          <p>
+            If you have any questions or would like to book a tour with us,
+            please don't hesitate to contact us.
+          </p>
+
+          <p>
+            <strong>Phone:</strong> +256 744540099<br />
+            <strong>Email:</strong>
+            <a href="mailto:josephkibuule63@gmail.com"
+              >josephkibuule63@gmail.com</a
+            ><br />
+            <strong>Address:</strong> Lungujja-Kisovo, Uganda
+          </p>
+        </div>
+        <nav class="nav" aria-label="Footer navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+          </ul>
+        </nav>
+        
+      </div>
+      
+  </div>
+  <div class="footer" style="  background: transparent;
+        padding: 40px 30px 60px;
+        position: relative;
+        font-family: Montserrat, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica Neue, Arial;
+        max-height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+        max-width: 1700px;
+        margin: auto;
+      background:linear-gradient(to bottom, #4f6c73, #4f6c73);">©2025|All right reserved by Josh Automotive Mechanics</div>
+  </div>
+  </body>
+</html>
